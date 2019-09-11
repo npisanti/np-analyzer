@@ -2,9 +2,7 @@
 #include "np-analyzer.h"
 
 void np::Analyzer::setup( int id, int sampleRate, int frames ) {
-    
-    engine.listDevices();
-    
+
     engine.setChannels(2, 2);
     
     bands.resize(toInit.size());
@@ -20,12 +18,14 @@ void np::Analyzer::setup( int id, int sampleRate, int frames ) {
     engine.setup( sampleRate, frames, 3); 
 }
 
-
+void np::Analyzer::listDevices(){
+    engine.listDevices();
+}
+    
 void np::Analyzer::defaults() {
     band( "band", 0 );
     setup( 0, 44100, 512 );
 }
-
 
 void np::Analyzer::band( std::string name, int channel ){
     toInit.emplace_back();
@@ -94,4 +94,3 @@ void np::Analyzer::setBandLowPitch( float value, int band ){
 void np::Analyzer::setBandHighPitch( float value, int band ){
     bands[band].hiPitchControl.getOFParameterFloat() = value;
 }
-    

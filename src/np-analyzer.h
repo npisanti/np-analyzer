@@ -14,6 +14,7 @@ public:
     void setup( int id=0, int sampleRate=44100, int frames=512);
     
     void defaults();
+    void listDevices();
     
     float meter( int band=0 ) const;
     void draw( int x, int y );
